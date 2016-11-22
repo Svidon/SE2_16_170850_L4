@@ -1,15 +1,40 @@
-// Creo una classe employee
-class Employee{
-
-	// Creo instance con id, name, surname, level, salary
+//Creo una classe per gestire gli impiegati
+class Employee {
+	//Costruttore della classe con parametri id, name, surname, level, salary
 	constructor(id, name, surname, level, salary){
 		this.id = id;
-		this.name = name;
-		this.surname = surname;
+		this. name = name;
+		this. surname = surname;
 		this.level = level;
 		this.salary = salary;
 	}
-}
 
-// Esporto quello che mi serve
-//module.exports();
+	//Aggiungo employee al dict
+	add(dict){
+		dict[this.id] = this;
+	}
+};
+
+module.exports = {
+	//funzione per ottenere l'employee corrispondente ad un dato id
+	getId: function getEmployee(id, dict){
+		if(dict[id] != null){
+			return dict[id];
+		}
+		else{
+			return null;
+		}
+	},
+
+	//Elimino employee con quell'id
+	delete: function deleteEmployee(id){
+		dict[id] = null;
+	},
+
+	//Aggiungo o modifico employee
+	update: function UpdateEmployee(id, name, surname, level, salary, dict){
+		var e = new Employee(id, name, surname, level, salary);
+		e.add(dict);
+		return dict[id];
+	}
+}
