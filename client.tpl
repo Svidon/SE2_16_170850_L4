@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- <script src="management.js"></script> -->
 		<meta charset="utf-8">
 		<title>Employees Management</title>
 	</head>

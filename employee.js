@@ -1,5 +1,7 @@
+// Creo una classe employee
 class Employee{
 
+	// Creo instance con id, name, surname, level, salary
 	constructor(id, name, surname, level, salary){
 		this.id = id;
 		this.name = name;
@@ -9,4 +11,5 @@ class Employee{
 	}
 }
 
-module.exports();
+// Esporto quello che mi serve
+//module.exports();
