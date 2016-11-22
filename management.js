@@ -1,6 +1,7 @@
 // Variabile controllo per msotrare il form
 var check = false;
 
+// Cambia la visibilita del form
 function show() {
 	if(check == false){
 		document.getElementById("infos").style.display = "block";

@@ -1,0 +1,24 @@
+{
+  "name": "employees",
+  "version": "1.0.0",
+  "description": "Employees management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Svidon/SE2_16_170850_L4.git"
+  },
+  "author": "nicolo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Svidon/SE2_16_170850_L4/issues"
+  },
+  "homepage": "https://github.com/Svidon/SE2_16_170850_L4#readme",
+  "dependencies": {
+    "bind": "^0.1.7",
+    "express": "^4.14.0",
+    "util": "^0.10.3"
+  }
+}

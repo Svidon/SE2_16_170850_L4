@@ -1,10 +1,11 @@
 //MI FACCIO SCRIVERE TUTTO DAL SERVER?
 
 //Librerie
-var http = request('http');
-var url = request('url');
-var express = request('express');
-var util = request('util');
+var http = require('http');
+var url = require('url');
+var express = require('express');
+var util = require('util');
+var bind = require('bind');
 
 //Instanzio express
 var app = express();
