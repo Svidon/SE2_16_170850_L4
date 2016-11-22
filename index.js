@@ -86,7 +86,7 @@ app.get('/', function(req, res)
 //Richiesta in Post per aggiungere/modificare employees
 app.post('/', function(request, response) 
 {
-	var text = '';
+	/*var text = '';
 	response.writeHead(200, {'Content-Type': 'text/html'});
 
     var postVar='';
@@ -105,7 +105,7 @@ app.post('/', function(request, response)
 	
     text = text + 'POST: ' + util.inspect(postVar);
     text = text + "<br> <br>";
-
+*/
     response.end(text);
   	
 });
@@ -115,3 +115,6 @@ app.listen(1337, '127.0.0.1');
  
 //Check dell'attivita
 console.log('Server running at http://127.0.0.1:1337/');
+
+//Quando la richiesta del GET ha showId a null mostro/nascondo il form
+//Per update e delete employee posso fare due radio button

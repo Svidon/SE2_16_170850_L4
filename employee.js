@@ -18,12 +18,7 @@ class Employee {
 module.exports = {
 	//funzione per ottenere l'employee corrispondente ad un dato id
 	getId: function getEmployee(id, dict){
-		if(dict[id] != null){
 			return dict[id];
-		}
-		else{
-			return null;
-		}
 	},
 
 	//Elimino employee con quell'id
