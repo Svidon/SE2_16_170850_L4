@@ -7,6 +7,7 @@ Se si cerca un id valido ma non ancora presente viene mostrato il form con l'id 
 Per scelta implementativa sono obbligatori tutti i campi tranne "ID" (perchè supponiamo di dover conoscere i dati dei nostri impiegati).
 Il campo dei form SEARCH e DELETE è l'id presente nella richiesta get inviata al server (per poter svolgere operazioni su quell'id in modo più veloce). Per svolgere operazioni su altri id è sufficiente cambiare id nel form.
 I dipendenti sono salvati all'interno di un dizionario (inizializzato con due entry).
+Il primo "NaN is not a number" in console e' dovuto alla prima richiesta al server (che non essendo passata per il form non ha quindi inviato un id)
 
 # How to Test
 Installare le librerie richieste nel file index.js, poi invocare da terminale il comando "node index.js".

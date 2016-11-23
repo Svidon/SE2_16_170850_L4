@@ -17,9 +17,9 @@ var controlId = 2;
 
 //Istanzio express
 var app = express();
-//Setto la porta del server
+//Setto la porta del server e la directory con lo script
 app.set('port', (process.env.PORT || 1337));
-
+app.use('/', express.static(__dirname + '/'));
 
 //Richiesta in get (per cercare id) e per far partire il server
 app.get('/', function(req, res)
@@ -93,7 +93,7 @@ app.get('/delete', function(req,res)
 
 	console.log("To delete: " + id);
 
-	//CAMBIA IN DELETE
+	//Controlli su id
 	if(!isNaN(id)){
 		if(id != null){
 			//Cancello dal dizionario l'employee
@@ -133,7 +133,7 @@ app.get('/info', function(req, res)
 	var level = parseInt(url_parts.level);
 	var salary = parseInt(url_parts.salary);
 
-	console.log(id + " " + name + " " + surname + " " + level + " " + salary);
+	console.log("Get for update: " + id + " " + name + " " + surname + " " + level + " " + salary);
 
 	//Controllo che id non sia nullo
 	if(id == null || isNaN(id)){
