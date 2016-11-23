@@ -13,6 +13,9 @@ var dict = {};
 var qwe = employee.update(0, "Nick", "Gira", 3, 40000, dict); 
 var asd = employee.update(1, "Cece", "Grigo", 1, 20000, dict);
 
+//Inizializzo controlId
+var controlId = 2;
+
 //Istanzio express
 var app = express();
 //Setto la porta del server
@@ -39,6 +42,7 @@ app.get('/', function(req, res)
     				surname: e.surname,
     				level: e.level,
     				salary: e.salary,
+    				display: "block"
     			}, 
     				function(data) {
 				        //write response
@@ -48,65 +52,69 @@ app.get('/', function(req, res)
 				);
     		}
     		else {
-    			bind.toFile('./client.tpl', {}, 
+    			bind.toFile('./client.tpl', {
+    				id: id,
+    				display: "block"
+    			}, 
     				function(data) 
 				    {
 				        //write response
 				        res.writeHead(200, {'Content-Type': 'text/html'});
 				        res.end(data);
-				    });
+				    }
+				);
     		}
     	}
     	else {
     		console.log(id + " is negative!");
-
-    		bind.toFile('./client.tpl', {}, 
-    				function(data) 
-				    {
-				        //write response
-				        res.writeHead(200, {'Content-Type': 'text/html'});
-				        res.end(data);
-				    });
+    		response.redirect("./");
     	}
     }
     else {
     	console.log(id + " is not a number!");
-
-    	bind.toFile('./client.tpl', {}, 
-    				function(data) 
-				    {
-				        //write response
-				        res.writeHead(200, {'Content-Type': 'text/html'});
-				        res.end(data);
-				    });
+    	response.redirect("./");
     }
 
 });
 
 //Richiesta in Post per aggiungere/modificare employees
-app.post('/', function(request, response) 
+app.get('/info', function(req, res) 
 {
-	/*var text = '';
-	response.writeHead(200, {'Content-Type': 'text/html'});
+	var url_parts = url.parse(req.url, true).query;
 
-    var postVar='';
-	
-    var body = '';			
-    request.on('data', function(data) 
-    {
-        body += data;
-    });
+	var id = parseInt(url_parts.id);
+	var name = url_parts.name;
+	var surname = url_parts.surname;
+	var level = parseInt(url_parts.level);
+	var salary = parseInt(url_parts.salary);
 
-    request.on('end', function() 
-    {
-        postVar = util.parse(body);
-    });
+	if(!isNaN(id)){
+		if(id == null){
+			employee.update(controlId, name, surname, level, salary, dict);
+			console.log("Inserted: " + controlId);
+			controlId++;
+		}
+    	else if(id >= 0){
+    		employee.update(id, name, surname, level, salary, dict);
+    		console.log("Inserted: " + id);
+    		controlId = id + 1;
+		}
+		else{
+			console.log(id + " is negative!");
+			response.redirect("./");
+		}
+	}
 
-	
-    text = text + 'POST: ' + util.inspect(postVar);
-    text = text + "<br> <br>";
-*/
-    response.end(text);
+	bind.toFile('./client.tpl', {
+		display: "none"
+	}, 
+    	function(data) 
+		   {
+		       //write response
+		       res.writeHead(200, {'Content-Type': 'text/html'});
+		       res.end(data);
+		   }
+	);
   	
 });
 
@@ -116,5 +124,4 @@ app.listen(1337, '127.0.0.1');
 //Check dell'attivita
 console.log('Server running at http://127.0.0.1:1337/');
 
-//Quando la richiesta del GET ha showId a null mostro/nascondo il form
-//Per update e delete employee posso fare due radio button
+//Per delete faccio pulsante sotto search
