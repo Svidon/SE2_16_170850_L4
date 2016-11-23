@@ -9,7 +9,7 @@ var employee = require('./employee.js');
 //Insieme degli employee
 var dict = {};
 
-//Istanzio alcuni dipendenti
+//Istanzio alcuni dipendenti base di esempio
 var qwe = employee.update(0, "Nick", "Gira", 3, 40000, dict); 
 var asd = employee.update(1, "Cece", "Grigo", 1, 20000, dict);
 
@@ -69,7 +69,7 @@ app.get('/', function(req, res)
     else {
     	//Errore non e' un numero
     	console.log(id + " is not a number!");
-    	response.redirect("./");
+    	res.redirect("./");
     }
 
 });
@@ -84,15 +84,15 @@ app.get('/delete', function(req,res)
 
 	//CAMBIA IN DELETE
 	if(!isNaN(id)){
-		if(id == null){
-			employee.update(controlId, name, surname, level, salary, dict);
-			console.log("Inserted: " + controlId);
-			controlId++;
+		if(id != null){
+			//Cancello dal dizionario l'employee
+			employee.delete(id, dict);
+			console.log("Deleted: " + id);
 		}
     	else{
-    		employee.update(id, name, surname, level, salary, dict);
-    		console.log("Inserted: " + id);
-    		controlId = id + 1;
+    		//Id null, non posso cancellare
+    		console.log("ID is null");
+    		res.redirect("./");
 		}
 	}
 
@@ -140,7 +140,7 @@ app.get('/info', function(req, res)
 	else {
 		//Errore, non e' un numero
 		console.log(id + " is not a number!");
-		response.redirect("./");
+		res.redirect("./");
 	}
 
 	//Nascondo il form
@@ -162,5 +162,3 @@ app.listen(1337, '127.0.0.1');
  
 //Check dell'attivita
 console.log('Server running at http://127.0.0.1:1337/');
-
-//Per delete faccio pulsante sotto search

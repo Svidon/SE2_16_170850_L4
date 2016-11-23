@@ -22,7 +22,7 @@ module.exports = {
 	},
 
 	//Elimino employee con quell'id
-	delete: function deleteEmployee(id){
+	delete: function deleteEmployee(id, dict){
 		dict[id] = null;
 	},
 

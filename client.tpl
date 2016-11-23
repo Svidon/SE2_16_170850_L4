@@ -14,7 +14,7 @@
 		</form>
 
 		<form id="delete" action="http://127.0.0.1:1337/delete" method="get">
-			Delete ID: <input type="nubmer" name="deleteID" min="0">
+			Delete ID: <input type="nubmer" name="deleteID" min="0" value=(:id:)>
 			<button>Delete</button><br>
 		</form>
 
