@@ -2,7 +2,6 @@
 var http = require('http');
 var url = require('url');
 var express = require('express');
-var util = require('util');
 var bind = require('bind');
 var employee = require('./employee.js');
 
@@ -56,7 +55,7 @@ app.get('/', function(req, res)
     		bind.toFile('./client.tpl', {
     			id: id,
     			display: "block"
-    		}, 
+    			}, 
     			function(data) 
 			    {
 			        //Scrivo la risposta
@@ -69,7 +68,17 @@ app.get('/', function(req, res)
     else {
     	//Errore non e' un numero
     	console.log(id + " is not a number!");
-    	res.redirect("./");
+    	//Faccio bind perche' la prima volta che accedo al server, esso deve generarmi la pagina client.tpl
+    	bind.toFile('./client.tpl', {
+    		display: "none"
+    	}, 
+    		function(data) 
+			{
+			    //Scrivo la risposta
+			    res.writeHead(200, {'Content-Type': 'text/html'});
+			    res.end(data);
+			}
+		);
     }
 
 });
@@ -80,7 +89,9 @@ app.get('/delete', function(req,res)
 {
 	//Raccolgo il parametro "id" richiesto
 	var url_parts = url.parse(req.url, true).query;
-	var id = parseInt(url_parts.id);
+	var id = parseInt(url_parts.deleteID);
+
+	console.log("To delete: " + id);
 
 	//CAMBIA IN DELETE
 	if(!isNaN(id)){
@@ -122,25 +133,20 @@ app.get('/info', function(req, res)
 	var level = parseInt(url_parts.level);
 	var salary = parseInt(url_parts.salary);
 
-	//Controllo che id sia un numero, non sia nullo o negativo
-	if(!isNaN(id)){
-		if(id == null){
-			//Aggiungo in base all'id di default
-			employee.update(controlId, name, surname, level, salary, dict);
-			console.log("Inserted: " + controlId);
-			controlId++;
-		}
-    	else{
-    		//Aggiungo in base all'id dato
-    		employee.update(id, name, surname, level, salary, dict);
-    		console.log("Inserted: " + id);
-    		controlId = id + 1;
-		}
+	console.log(id + " " + name + " " + surname + " " + level + " " + salary);
+
+	//Controllo che id non sia nullo
+	if(id == null || isNaN(id)){
+		//Aggiungo in base all'id di default
+		employee.update(controlId, name, surname, level, salary, dict);
+		console.log("Inserted: " + controlId);
+		controlId++;
 	}
-	else {
-		//Errore, non e' un numero
-		console.log(id + " is not a number!");
-		res.redirect("./");
+    else{
+    	//Aggiungo in base all'id dato
+    	employee.update(id, name, surname, level, salary, dict);
+    	console.log("Inserted: " + id);
+    	controlId = id + 1;
 	}
 
 	//Nascondo il form

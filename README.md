@@ -9,6 +9,6 @@ Il campo dei form SEARCH e DELETE è l'id presente nella richiesta get inviata a
 I dipendenti sono salvati all'interno di un dizionario (inizializzato con due entry).
 
 # How to Test
-Installare le librerie richieste nel file index.js, poi invocare da terminale il comando node.js.
+Installare le librerie richieste nel file index.js, poi invocare da terminale il comando "node index.js".
 Aprire il browser con URL: http://127.0.0.1:1337/
-Gli errori sono segnalati nella console del server e l'utente viene reindirizzato alla pagina principale.
+Le operazioni e gli errori sono segnalati nella console del server e l'utente viene reindirizzato alla pagina principale.

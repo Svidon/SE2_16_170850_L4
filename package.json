@@ -19,6 +19,6 @@
   "dependencies": {
     "bind": "^0.1.7",
     "express": "^4.14.0",
-    "util": "^0.10.3"
+    "querystring": "^0.2.0"
   }
 }

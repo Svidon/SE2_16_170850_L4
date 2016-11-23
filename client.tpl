@@ -9,11 +9,11 @@
 		<h3>Employees Managing</h3>
 
 		<form id="search" action="http://127.0.0.1:1337/" method='get'>
-			Search ID: <input type="nubmer" name="searchID" min="0" value=(:id:)>
+			Search ID: <input type="number" name="searchID" min="0" value=(:id:)>
 			<button>Search</button><br>
 		</form>
 
-		<form id="delete" action="http://127.0.0.1:1337/delete" method="get">
+		<form id="delete" action="http://127.0.0.1:1337/delete" method='get'>
 			Delete ID: <input type="nubmer" name="deleteID" min="0" value=(:id:)>
 			<button>Delete</button><br>
 		</form>
@@ -31,7 +31,7 @@
 				LEVEL: <input type="number" name="level" min="0" value="(:level:)" required><br>
 				SALARY: <input type="number" name="salary" min="0" value="(:salary:)" required><br><br>
 
-				Update: <button onclick="update(id)">Update</button><br>
+				Update: <button>Update</button><br>
 			</fieldset>
 		</form>
 
